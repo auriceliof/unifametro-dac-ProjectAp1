@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +20,7 @@ public class Email {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_envio")	
-	private String dataEnvio;
+	private Date dataEnvio;
 	
 	@Column(name = "confirma_leitura")
 	private Boolean confirmaLeitura;
@@ -41,10 +43,10 @@ public class Email {
 	public void setCorpo(String corpo) {
 		this.corpo = corpo;
 	}
-	public String getDataEnvio() {
+	public Date getDataEnvio() {
 		return dataEnvio;
 	}
-	public void setDataEnvio(String dataEnvio) {
+	public void setDataEnvio(Date dataEnvio) {
 		this.dataEnvio = dataEnvio;
 	}
 	public Boolean getConfirmaLeitura() {

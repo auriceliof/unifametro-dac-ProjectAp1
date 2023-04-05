@@ -13,11 +13,11 @@
 		<h:form id="form">
 			 
 			<p:panel header="Página de listagem de emails">
-				<p:dataTable value="#{emailBean.list}" var="f">
-					<p:column headerText="Destionatário"><p:outputLabel value="#{f.destinatario}"/></p:column>
-					<p:column headerText="Corpo"><p:outputLabel value="#{f.corpo}"/></p:column>
-					<p:column headerText="Data de Envio"><p:outputLabel value="#{f.dataEnvio}"/></p:column>
-					<p:column headerText="Confirmação de leitura"><p:outputLabel value="#{f.confirmaLeitura}"/></p:column>
+				<p:dataTable value="#{emailBean.list}" var="l">
+					<p:column headerText="Destionatário"><p:outputLabel value="#{l.destinatario}"/></p:column>
+					<p:column headerText="Corpo"><p:outputLabel value="#{l.corpo}"/></p:column>
+					<p:column headerText="Data de Envio"><p:outputLabel value="#{l.dataEnvio}"/></p:column>
+					<p:column headerText="Confirmação de leitura"><p:outputLabel value="#{l.confirmaLeitura}"/></p:column>
 				</p:dataTable>
 				<p:link outcome="envio_email" value="voltar"/>
 			</p:panel>

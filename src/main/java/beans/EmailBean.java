@@ -3,7 +3,6 @@ package beans;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.security.auth.callback.ConfirmationCallback;
 
 import daos.EmailDao;
 import entities.Email;
