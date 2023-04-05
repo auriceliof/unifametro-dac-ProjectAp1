@@ -47,10 +47,10 @@ public class Email {
 	public void setDataEnvio(String dataEnvio) {
 		this.dataEnvio = dataEnvio;
 	}
-	public Boolean getConfirmaLeituraBoolean() {
+	public Boolean getConfirmaLeitura() {
 		return confirmaLeitura;
 	}
-	public void setConfirmaLeituraBoolean(Boolean confirmaLeituraBoolean) {
-		this.confirmaLeitura = confirmaLeituraBoolean;
+	public void setConfirmaLeitura(Boolean confirmaLeitura) {
+		this.confirmaLeitura = confirmaLeitura;
 	}
 }
