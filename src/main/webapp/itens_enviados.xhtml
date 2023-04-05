@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h:head><title>Listar Emails</title></h:head>
+	
+	<h:body>
+		<h:form id="form">
+			 
+			<p:panel header="Página de listagem de emails">
+				<p:dataTable value="#{emailBean.list}" var="f">
+					<p:column headerText="Destionatário"><p:outputLabel value="#{f.destinatario}"/></p:column>
+					<p:column headerText="Corpo"><p:outputLabel value="#{f.corpo}"/></p:column>
+					<p:column headerText="Data de Envio"><p:outputLabel value="#{f.dataEnvio}"/></p:column>
+					<p:column headerText="Confirmação de leitura"><p:outputLabel value="#{f.confirmaLeitura}"/></p:column>
+				</p:dataTable>
+				<p:link outcome="envio_email" value="voltar"/>
+			</p:panel>
+		</h:form>
+	</h:body>
+	
+</html>
