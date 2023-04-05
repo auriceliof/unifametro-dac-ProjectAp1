@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h:head><title>Registration Page</title></h:head>
+	
+	<h:body>
+		<h:form id="form">
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			<p:panel header="Registration Page">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nome: "/>
+					<p:inputText value="#{employeeBean.employee.name}" required="true" requiredMessage="Campo Obrigatorio"/>
+					
+					<p:outputLabel value="Data admisssão: "/>
+					<p:datePicker value="#{employeeBean.employee.admissionDate}"/>
+					
+					<p:outputLabel value="Contrato: "/>
+					<p:selectOneRadio value="#{employeeBean.employee.typeContract}">
+						<f:selectItem itemValue="PJ" itemLabel="PJ"/>
+						<f:selectItem itemValue="CLT" itemLabel="CLT"/>
+					</p:selectOneRadio>
+					
+					<p:outputLabel value="Setor: "/>
+					<p:selectOneMenu value="#{employeeBean.employee.sector}">
+						<f:selectItem itemValue="rh" itemLabel="RH"/>
+						<f:selectItem itemValue="vendas" itemLabel="VENDAS"/>
+						<f:selectItem itemValue="adm" itemLabel="ADMINISTRATIVO"/>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Cargo: "/>
+					<p:inputText value="#{employeeBean.employee.place}"/>
+					
+					<p:outputLabel value="Avaliação: "/>
+					<p:rating value="#{employeeBean.employee.avaluationNote}"/>
+					
+					<p:outputLabel value="Atividades: "/>
+					<p:inputTextarea value="#{employeeBean.employee.function}"/>
+					
+					<p:commandButton value="Salvar" action="#{employeeBean.save}" update="form"/>
+					<p:link outcome="listing" value="Listar"/>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</h:body>
+	
+	
+	
+	
+	
+</html>
