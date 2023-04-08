@@ -15,7 +15,7 @@ public class EmailBean {
 	
 	private List<Email> list;
 	
-	public String save() {
+	public String salvar() {
 		
 		try {			
 			EmailDao.salvar(Email);
@@ -28,8 +28,23 @@ public class EmailBean {
 		
 		return null;
 	}
+	
+	public String editar() {
+		EmailDao.editar(Email);
+		return null;
+	}
 
+	public String deletar() {		
+		EmailDao.editar(Email);
+		return null;
+	}
+	
+	public String listarPorId() {
+		EmailDao.listarPorId(Email.getId());
+		return null;
+	}
 
+	
 	public Email getEmail() {
 		return Email;
 	}

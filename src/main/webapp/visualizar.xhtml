@@ -8,16 +8,16 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Listar emails</title>
+	<title>Visualizar destinatario</title>
 </h:head>
 
 <h:body>	
 		
 	<h:form id="form">
 	
-		<p:panel header="Listar Emails">
+		<p:panel header="Visualização de destinatários">
 		
-			<p:link outcome="envio_email" value="voltar" 
+			<p:link outcome="itens_enviados" value="voltar" 
 				style="display: flex;
 				justify-content: end; 
 				margin-bottom: 10px;"/>
@@ -33,14 +33,24 @@
 				</p:column>
 				
 				<p:column headerText="Ação" style="text-align: center; ">		
-								
-					<p:linkButton action="#{emailBean.listarPorId}" outcome="visualizar" value="Visualizar" 
+					
+					<p:linkButton action="#{emailBean.deletar}" outcome="itens_enviados" value="Editar" 
 						style="border: 7px solid; 
 						border-radius: 25px; 
-						background-color: #f39c12;
+						background-color: #8e44ad;
 						margin-right: 10px;
 						width: 8rem;
-						padding: 1px 0 5px 9px;">	
+						padding: 1px 0 5px 15px;">
+						
+					</p:linkButton>
+					
+					<p:linkButton outcome="itens_enviados" value="Deletar" 
+						style="border: 7px solid; 
+						border-radius: 25px; 
+						background-color: #c0392b;
+						margin-right: 10px;
+						width: 8rem;
+						padding: 1px 0 5px 15px;">
 					</p:linkButton>
 					
 				</p:column>

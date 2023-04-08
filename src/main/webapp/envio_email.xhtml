@@ -28,7 +28,7 @@
 					<p:outputLabel value="Confirma Leitura: "/>
 					<p:selectBooleanCheckbox value="#{emailBean.email.confirmaLeitura}"/>
 									
-					<p:commandButton value="Salvar" action="#{emailBean.save}" update="form"/>
+					<p:commandButton value="Salvar" action="#{emailBean.salvar}" update="form"/>
 					<p:link outcome="itens_enviados" value="Listar Emails"/>
 				</p:panelGrid>
 			</p:panel>
