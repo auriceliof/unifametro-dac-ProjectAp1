@@ -19,11 +19,11 @@ public class EmailBean {
 		
 		try {			
 			EmailDao.salvar(Email);
-			MessageUtil.sucesso("Sucesso", "Email salvao com sucesso!");
+			MessageUtil.sucesso("Sucesso: ", "Email salvo com sucesso!");
 			Email = new Email();
 			
 		} catch(Exception e) {
-			MessageUtil.erro("Erro", "Erro ao salvar o Email!");
+			MessageUtil.erro("Erro: ", "Erro ao salvar o Email!");
 		}
 		
 		return null;

@@ -7,21 +7,62 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-	<h:head><title>Listar Emails</title></h:head>
+<h:head>
+	<title>Listar Emails</title>
+</h:head>
+
+<h:body>	
+		
+	<h:form id="form">
 	
-	<h:body>
-		<h:form id="form">
-			 
-			<p:panel header="Página de listagem de emails">
-				<p:dataTable value="#{emailBean.list}" var="l">
-					<p:column headerText="Destionatário"><p:outputLabel value="#{l.destinatario}"/></p:column>
-					<p:column headerText="Corpo"><p:outputLabel value="#{l.corpo}"/></p:column>
-					<p:column headerText="Data de Envio"><p:outputLabel value="#{l.dataEnvio}"/></p:column>
-					<p:column headerText="Confirmação de leitura"><p:outputLabel value="#{l.confirmaLeitura}"/></p:column>
-				</p:dataTable>
-				<p:link outcome="envio_email" value="voltar"/>
-			</p:panel>
-		</h:form>
-	</h:body>
-	
+		<p:panel header="Página de listagem de emails">
+		
+			<p:link outcome="envio_email" value="voltar" 
+				style="display: flex;
+				justify-content: end; 
+				margin-bottom: 10px;"/>
+
+			<p:dataTable value="#{emailBean.list}" var="l" >
+			
+				<p:column headerText="Destionatário" style="margin-left: 50px;">
+					<p:outputLabel value="#{l.destinatario}"/>
+				</p:column>
+				
+				<p:column headerText="Ação" style="text-align: center; ">						
+					<p:linkButton id="vis" outcome="visualizar_email" value="Visualizar" 
+						style="border: 7px solid; 
+						border-radius: 25px; 
+						background-color: #f39c12;
+						margin-right: 10px;
+						width: 8rem;
+						padding: 1px 0 5px 9px;">	
+					</p:linkButton>
+					<p:linkButton outcome="visualizar_email" value="Editar" 
+						style="border: 7px solid; 
+						border-radius: 25px; 
+						background-color: #8e44ad;
+						margin-right: 10px;
+						width: 8rem;
+						padding: 1px 0 5px 15px;">
+						
+					</p:linkButton>
+					<p:linkButton outcome="visualizar_email" value="Deletar" 
+						style="border: 7px solid; 
+						border-radius: 25px; 
+						background-color: #c0392b;
+						margin-right: 10px;
+						width: 8rem;
+						padding: 1px 0 5px 15px;">
+					</p:linkButton>
+				</p:column>
+				<p:column></p:column>
+				
+			</p:dataTable>
+
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+
 </html>
