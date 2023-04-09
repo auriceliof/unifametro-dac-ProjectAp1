@@ -7,16 +7,15 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-	<h:head><title>Deleting</title></h:head>
+	<h:head><title>Editing</title></h:head>
 	
 	<h:body>
 		<h:form id="form">
-		
 			<p:messages id="messages" showDetail="true" closable="true">
 				<p:autoUpdate />
 			</p:messages>
 			
-			<p:panel header="Página de Exclusão de E-mails">
+			<p:panel header="Página de Edição de E-mail">
 			
 			<div>
 				<p:link outcome="itens_enviados" value="voltar" 
@@ -25,7 +24,7 @@
 					margin-bottom: 10px;
 					margin-top: 10px;"/>		
 			</div>
-			
+				
 				<p:panelGrid columns="2">
 					
 					<p:outputLabel value="Destinatário: " for="tipo"/>
@@ -33,16 +32,24 @@
 						<f:selectItem itemLabel="" />	
 						<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />				
 					</p:selectOneMenu>
-
-					<p:commandButton value="Excluir" action="#{emailBean.deletar}" update="form"
-						style="
-							border-radius: 25px; 
-							background-color: #e55039;
-							margin-right: 10px;
-							width: 8rem;
-							padding: 1px 0 5px 5px;">		
-					</p:commandButton>
 					
+					<p:outputLabel value="Corpo: "/>
+					<p:inputTextarea value="#{emailBean.email.corpo}"/>				
+					
+					<p:outputLabel value="Data de Envio: "/>
+					<p:datePicker value="#{emailBean.email.dataEnvio}"/>
+					
+					<p:outputLabel value="Confirma Leitura: "/>
+					<p:selectBooleanCheckbox value="#{emailBean.email.confirmaLeitura}"/>
+									
+					<p:commandButton value="Atualizar" action="#{emailBean.editar}" update="form"
+						style="border: 5px solid; 
+						border-radius: 25px; 
+						background-color: #8e44ad;
+						margin-right: 10px;
+						width: 8rem;
+						padding: 1px 0 5px 5px;"/>
+
 				</p:panelGrid>
 			</p:panel>
 		</h:form>

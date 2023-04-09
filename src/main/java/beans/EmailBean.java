@@ -29,7 +29,7 @@ public class EmailBean {
 		return null;
 	}
 	
-	public String editar() {
+	public String editar() {		
 		EmailDao.editar(Email);
 		Email = new Email();
 		return null;

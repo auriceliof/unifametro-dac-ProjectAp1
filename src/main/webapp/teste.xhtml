@@ -20,11 +20,16 @@
 				<p:outputLabel value="Destinatário "/>
 					
 				<p:panelGrid columns="2" >
-				
-					<p:selectOneListbox >	
-						<f:selectItem itemLabel="Test1"  />	
-						<f:selectItem itemLabel="Test2"  />	
-						<f:selectItem itemLabel="TestN"  />				
+	
+					<p:outputLabel value="Email" for="tipo"/>
+					<p:selectOneMenu id="tipo" value="#{emailBean.email.destinatario}">	
+						<f:selectItem itemLabel="Selecione..." />	
+						<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />				
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Email" for="tipo2"/>
+					<p:selectOneListbox id="tipo2" value="#{emailBean.email.destinatario}">		
+						<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />				
 					</p:selectOneListbox>	
 				
 				</p:panelGrid>

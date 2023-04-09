@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 public class Email {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private Integer id;
 	private String destinatario;
 	private String corpo;

@@ -11,10 +11,21 @@
 	
 	<h:body>
 		<h:form id="form">
+		
 			<p:messages id="messages" showDetail="true" closable="true">
 				<p:autoUpdate />
 			</p:messages>
+			
 			<p:panel header="Página de Envio de E-mail">
+			
+			<div>
+				<p:link outcome="itens_enviados" value="voltar" 
+					style="display: flex;
+					justify-content: end; 
+					margin-bottom: 10px;
+					margin-top: 10px;"/>		
+			</div>
+			
 				<p:panelGrid columns="2">
 					<p:outputLabel value="Destinatário: "/>
 					<p:inputText value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
@@ -28,9 +39,11 @@
 					<p:outputLabel value="Confirma Leitura: "/>
 					<p:selectBooleanCheckbox value="#{emailBean.email.confirmaLeitura}"/>
 									
-					<p:commandButton value="Salvar" action="#{emailBean.salvar}" update="form"/>
-					<p:link outcome="itens_enviados" value="Listar Emails"/>
-					<p:link outcome="excluir_email" value="Excluir Email"/>
+					<p:commandButton value="Salvar" action="#{emailBean.salvar}" update="form"
+						style="	border-radius: 25px; 
+								margin-right: 10px;
+								width: 8rem;
+								padding: 1px 0 5px 5px;"/>
 
 				</p:panelGrid>
 			</p:panel>

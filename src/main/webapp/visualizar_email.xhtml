@@ -8,23 +8,21 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Visualizar destinatario</title>
+	<title>View</title>
 </h:head>
 
 <h:body>	
 		
 	<h:form id="form">
 	
-		<p:panel header="Visualização de destinatários">
+		<p:panel header="Página de Visualização de Email">
 		
 			<p:link outcome="itens_enviados" value="voltar" 
 				style="display: flex;
 				justify-content: end; 
 				margin-bottom: 10px;"/>
 				
-				
-				
-				<p:dataTable value="#{emailBean.list}" var="l" >			
+			<p:dataTable value="#{emailBean.list}" var="l" >			
 			
 				<p:column headerText="Id">
 					<p:column>
