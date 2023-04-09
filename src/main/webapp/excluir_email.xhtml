@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-	<h:head><title>Pagina de Envio de Email</title></h:head>
+	<h:head><title>Pagina de Exclusão de Email</title></h:head>
 	
 	<h:body>
 		<h:form id="form">
@@ -17,20 +17,10 @@
 			<p:panel header="Página de Envio de E-mail">
 				<p:panelGrid columns="2">
 					<p:outputLabel value="Destinatário: "/>
-					<p:inputText value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
+					<p:inputText value="#{emailBean.email.id}" required="true" requiredMessage="Campo Obrigatorio"/>
 					
-					<p:outputLabel value="Corpo: "/>
-					<p:inputTextarea value="#{emailBean.email.corpo}"/>				
-					
-					<p:outputLabel value="Data de Envio: "/>
-					<p:datePicker value="#{emailBean.email.dataEnvio}"/>
-					
-					<p:outputLabel value="Confirma Leitura: "/>
-					<p:selectBooleanCheckbox value="#{emailBean.email.confirmaLeitura}"/>
-									
-					<p:commandButton value="Salvar" action="#{emailBean.salvar}" update="form"/>
+					<p:commandButton value="Excluir" action="#{emailBean.deletar}" update="form"/>
 					<p:link outcome="itens_enviados" value="Listar Emails"/>
-					<p:link outcome="excluir_email" value="Excluir Email"/>
 
 				</p:panelGrid>
 			</p:panel>

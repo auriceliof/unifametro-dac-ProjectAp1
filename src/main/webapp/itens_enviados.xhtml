@@ -26,7 +26,7 @@
 			
 				<p:column headerText="Destionatário" >
 										
-					<p:selectOneListbox id="option" value="#{selectOneMenuView.selectedOption}" >					
+					<p:selectOneListbox >					
 						<f:selectItem itemLabel="#{l.destinatario}"  />					
 					</p:selectOneListbox>
 				
@@ -41,6 +41,25 @@
 						margin-right: 10px;
 						width: 8rem;
 						padding: 1px 0 5px 9px;">	
+					</p:linkButton>
+					
+					<p:linkButton action="#{emailBean.editar}" outcome="itens_enviados" value="Editar" 
+						style="border: 7px solid; 
+						border-radius: 25px; 
+						background-color: #8e44ad;
+						margin-right: 10px;
+						width: 8rem;
+						padding: 1px 0 5px 15px;">
+						
+					</p:linkButton>
+					
+					<p:linkButton action="excluir_email" outcome="excluir_email" value="Excluir" 
+						style="border: 7px solid; 
+						border-radius: 25px; 
+						background-color: #c0392b;
+						margin-right: 10px;
+						width: 8rem;
+						padding: 1px 0 5px 15px;">
 					</p:linkButton>
 					
 				</p:column>

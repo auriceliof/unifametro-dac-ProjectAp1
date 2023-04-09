@@ -21,47 +21,36 @@
 				style="display: flex;
 				justify-content: end; 
 				margin-bottom: 10px;"/>
-
-			<p:dataTable value="#{emailBean.list}" var="l" >			
+				
+				
+				
+				<p:dataTable value="#{emailBean.list}" var="l" >			
 			
-				<p:column headerText="Destionatário" >
-										
-					<p:selectOneListbox id="option" value="#{selectOneMenuView.selectedOption}" >					
-						<f:selectItem itemLabel="#{l.destinatario}"  />					
-					</p:selectOneListbox>
-				
+				<p:column headerText="Id">
+					<p:column>
+						<p:outputLabel value="#{l.id}"/>							
+					</p:column>										
 				</p:column>
-				
-				<p:column headerText="Ação" style="text-align: center; ">		
-					
-					<p:linkButton action="#{emailBean.deletar}" outcome="itens_enviados" value="Editar" 
-						style="border: 7px solid; 
-						border-radius: 25px; 
-						background-color: #8e44ad;
-						margin-right: 10px;
-						width: 8rem;
-						padding: 1px 0 5px 15px;">
-						
-					</p:linkButton>
-					
-					<p:linkButton outcome="itens_enviados" value="Deletar" 
-						style="border: 7px solid; 
-						border-radius: 25px; 
-						background-color: #c0392b;
-						margin-right: 10px;
-						width: 8rem;
-						padding: 1px 0 5px 15px;">
-					</p:linkButton>
-					
+				<p:column headerText="Destionatário">
+					<p:column>
+						<p:outputLabel value="#{l.destinatario}"/>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Corpo">
+					<p:column>
+						<p:outputLabel value="#{l.corpo}"/>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Confirma Leitura">
+					<p:column>
+						<p:outputLabel value="#{l.confirmaLeitura}"/>							
+					</p:column>										
 				</p:column>
 				<p:column></p:column>
 				
 			</p:dataTable>
-
 		</p:panel>
-
 	</h:form>
-
 </h:body>
 
 </html>

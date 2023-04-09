@@ -14,7 +14,7 @@ public class EmailBean {
 	private Email Email = new Email();
 	
 	private List<Email> list;
-	
+		
 	public String salvar() {
 		
 		try {			
@@ -31,20 +31,21 @@ public class EmailBean {
 	
 	public String editar() {
 		EmailDao.editar(Email);
+		Email = new Email();
 		return null;
 	}
 
 	public String deletar() {		
-		EmailDao.editar(Email);
+		EmailDao.deletar(Email);
+		Email = new Email();
 		return null;
 	}
 	
-	public String listarPorId() {
+	public String listarPorId() {		
 		EmailDao.listarPorId(Email.getId());
 		return null;
-	}
-
-	
+	}	
+		
 	public Email getEmail() {
 		return Email;
 	}
@@ -61,11 +62,11 @@ public class EmailBean {
 		}
 		return list;
 	}
-
-
+	
 	public void setList(List<Email> list) {
 		this.list = list;
-	}	
+	}
+	
 }
 
 
