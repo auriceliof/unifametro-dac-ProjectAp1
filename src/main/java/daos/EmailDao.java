@@ -19,18 +19,14 @@ public class EmailDao {
 		em.close();
 	}
 	
-	
 	public static void editar(Email e) {
-		
 		EntityManager em = JPAUtil.creatingEntityManager();
 		em.getTransaction().begin();
-		e = em.find(Email.class, e.getId());
 		em.merge(e);
 		em.getTransaction().commit();
 		em.close();
 	}
-	
-	
+
 	public static void deletar(Email e) {
 		
 		EntityManager em = JPAUtil.creatingEntityManager();

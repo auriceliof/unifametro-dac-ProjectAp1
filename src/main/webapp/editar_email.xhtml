@@ -33,6 +33,9 @@
 						<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />				
 					</p:selectOneMenu>
 					
+					<p:outputLabel value="Destinatário: "/>
+					<p:inputText value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
+					
 					<p:outputLabel value="Corpo: "/>
 					<p:inputTextarea value="#{emailBean.email.corpo}"/>				
 					
@@ -41,7 +44,8 @@
 					
 					<p:outputLabel value="Confirma Leitura: "/>
 					<p:selectBooleanCheckbox value="#{emailBean.email.confirmaLeitura}"/>
-									
+					
+																	
 					<p:commandButton value="Atualizar" action="#{emailBean.editar}" update="form"
 						style="border: 5px solid; 
 						border-radius: 25px; 
