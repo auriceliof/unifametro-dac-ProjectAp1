@@ -33,6 +33,7 @@
 					width: 8rem;
 					padding: 1px 0 5px 9px;"/>	
 					
+				
 				<p:linkButton action="editar_email" outcome="editar_email" value="Editar" 
 					style="border: 5px solid; 
 					border-radius: 25px; 
@@ -49,6 +50,7 @@
 					width: 8rem;
 					padding: 1px 0 5px 15px;"/>
 				
+							
 				<p:commandButton value="Estatística" type="button" icon="pi pi-external-link" onclick="PF('dlg1').show()"
 					style="border: 5px solid; 
 					border-radius: 25px; 
@@ -58,13 +60,13 @@
 					padding: 1px 0 5px 5px;"/>
 				
 				<p:dialog header="Quantide de Emails" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
-	   				 <p class="m-0"><p:outputLabel value="100"/></p>
+	   				 <p class="m-0"><p:outputLabel value="#{emailBean.contarEmail}"/></p>
 				</p:dialog>	
-				
+								
 			</div>
 			
-			<p:dataTable value="#{emailBean.list}" var="l" >			
-			
+			<p:dataTable value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}">	
+								
 				<p:column headerText="Id">
 					<p:column>
 						<p:outputLabel value="#{l.id}"/>							
@@ -82,7 +84,9 @@
 				</p:column>
 				<p:column headerText="Data de envio">
 					<p:column>
-						<p:outputLabel value="#{l.dataEnvio}"/>							
+						<p:outputLabel value="#{l.dataEnvio}">
+							<f:convertDateTime pattern="dd/MM/YYYY"/>
+						</p:outputLabel>							
 					</p:column>										
 				</p:column>
 				<p:column headerText="Confirma leitura">
@@ -92,11 +96,85 @@
 				</p:column>
 				<p:column></p:column>
 				
+				<p:column headerText="Ações">
+					<p:column>
+						<p:commandButton value="Editar" oncomplete="PF('editar').show()" update="form_edit"
+							style="border: 5px solid; 
+							border-radius: 25px; 
+							background-color: #8e44ad;
+							margin-right: 10px;
+							width: 8rem;">
+							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>							
+						</p:commandButton>									
+					</p:column>		
+					
+					<p:column>
+						<p:commandButton value="Visualizar" oncomplete="PF('visualizar').show()" update="form_view"
+							style="border: 5px solid; 
+							border-radius: 25px; 
+							background-color: #f39c12;
+							margin-right: 10px;
+							width: 8rem;">
+							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>							
+						</p:commandButton>
+															
+					</p:column>										
+				
+												
+				</p:column>
+							
 			</p:dataTable>
-
+			
 		</p:panel>
-
+	
 	</h:form>
+
+	<p:dialog header="Editar Email" widgetVar="editar" modal="true" resizeble="false" showEffect="fade" hideEffect="fade">
+		<h:form id="form_edit">
+			<p:panelGrid columns="2" cellpadding="5" id="editar">
+					<p:outputLabel for="destinatario" value="Destinatário: "/>
+					<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
+					
+					<p:outputLabel for="corpo" value="Corpo: "/>
+					<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}"/>				
+					
+					<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
+					<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}"/>
+					
+					<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: "/>
+					<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}"/>
+									
+				</p:panelGrid>
+				
+				<p:commandButton value="Atualizar" action="#{emailBean.editar}" oncomplete="PF('editar').hide()" update="form"/>	
+				
+		</h:form>
+	
+	</p:dialog>		
+	
+	<p:dialog header="Visualizar Email" widgetVar="visualizar" modal="true" resizeble="false" showEffect="fade" hideEffect="fade">
+		<h:form id="form_view" >
+			<p:panelGrid columns="2" cellpadding="5" id="visualizar">
+					<p:outputLabel for="destinatario" value="Destinatário: "/>
+					<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" disabled="true"/>
+					
+					<p:outputLabel for="corpo" value="Corpo: "/>
+					<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}" disabled="true"/>				
+					
+					<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
+					<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}" disabled="true"/>
+					
+					<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: " />
+					<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}" disabled="true"/>			
+							
+				</p:panelGrid>
+				
+				<p:commandButton value="Fechar" oncomplete="PF('visualizar').hide()" update="form"/>	
+				
+		</h:form>
+	
+	</p:dialog>			
+	
 
 </h:body>
 

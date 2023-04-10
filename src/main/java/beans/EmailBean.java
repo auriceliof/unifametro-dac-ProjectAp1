@@ -1,26 +1,32 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import daos.EmailDao;
 import entities.Email;
 import utils.MessageUtil;
 
 @ManagedBean
-public class EmailBean {
-	
-	private Email Email = new Email();
+@ViewScoped
+public class EmailBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	private Email email = new Email();
 	
 	private List<Email> list;
-		
+	
+	private  String contarEmail;
+					
 	public String salvar() {
 		
 		try {			
-			EmailDao.salvar(Email);
+			EmailDao.salvar(email);
 			MessageUtil.sucesso("Sucesso: ", "Email salvo com sucesso!");
-			Email = new Email();
+			email = new Email();
 			
 		} catch(Exception e) {
 			MessageUtil.erro("Erro: ", "Erro ao salvar o Email!");
@@ -30,30 +36,34 @@ public class EmailBean {
 	}
 	
 	public String editar() {		
-		EmailDao.editar(Email);
-		Email = new Email();
+		EmailDao.editar(email);
+		email = new Email();
 		return null;
 	}
 
 	public String deletar() {		
-		EmailDao.deletar(Email);
-		Email = new Email();
+		EmailDao.deletar(email);
+		email = new Email();
 		return null;
 	}
 	
 	public String listarPorId() {		
-		EmailDao.listarPorId(Email.getId());
+		EmailDao.listarPorId(email.getId());
 		return null;
 	}	
-
+	
+	public String listarTodos() {		
+		EmailDao.listarTodos();
+		return null;
+	}	
 		
 	public Email getEmail() {
-		return Email;
+		return email;
 	}
 
 
-	public void setEmail(Email Email) {
-		this.Email = Email;
+	public void setEmail(Email email) {
+		this.email = email;
 	}
 
 
@@ -63,11 +73,25 @@ public class EmailBean {
 		}
 		return list;
 	}
-	
+		
 	public void setList(List<Email> list) {
 		this.list = list;
 	}
 	
+	public String getContarEmail() {
+		if (list == null) {
+			list = EmailDao.listarTodos();
+		}
+		return Integer.toString(list.size());
+	}
+
+	public void setContarEmail(String contarEmail) {
+		this.contarEmail = contarEmail;
+	}
+	
+	public String contarEmail() {
+		return contarEmail;	
+	}
 }
 
 

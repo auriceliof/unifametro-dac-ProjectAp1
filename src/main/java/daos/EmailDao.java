@@ -57,14 +57,4 @@ public class EmailDao {
 		em.close();
 		return e;
 	}	
-	
-
-	public static int contar() {
-		
-		EntityManager em = JPAUtil.creatingEntityManager();
-		Query q = em.createQuery("select e from Email e");
-		int size = q.getResultList().size();
-		em.close();
-		return size;
-	}	
 }

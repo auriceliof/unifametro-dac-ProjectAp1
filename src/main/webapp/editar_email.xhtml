@@ -29,21 +29,33 @@
 					
 					<p:outputLabel value="Destinatário: " for="tipo"/>
 					<p:selectOneMenu id="tipo" value="#{emailBean.email.id}">	
-						<f:selectItem itemLabel="" />	
+						<f:selectItem itemLabel="" update="form" />	
 						<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />				
-					</p:selectOneMenu>
 					
-					<p:outputLabel value="Destinatário: "/>
-					<p:inputText value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
-					
-					<p:outputLabel value="Corpo: "/>
-					<p:inputTextarea value="#{emailBean.email.corpo}"/>				
-					
-					<p:outputLabel value="Data de Envio: "/>
-					<p:datePicker value="#{emailBean.email.dataEnvio}"/>
-					
-					<p:outputLabel value="Confirma Leitura: "/>
-					<p:selectBooleanCheckbox value="#{emailBean.email.confirmaLeitura}"/>
+						<p>
+						<p:commandButton value="Editar" oncomplete="PF('editar').show()" update="form2">
+							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>							
+						</p:commandButton>									
+						
+						</p>
+				</p:selectOneMenu>
+				</p:panelGrid>
+				
+					<h:form id="form2">
+						<p:panelGrid columns="2" cellpadding="5" id="editar">
+							<p:outputLabel for="destinatario" value="Destinatário: "/>
+							<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
+							
+							<p:outputLabel for="corpo" value="Corpo: "/>
+							<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}"/>				
+							
+							<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
+							<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}"/>
+							
+							<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: "/>
+							<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}"/>					
+						</p:panelGrid>
+					</h:form>
 					
 																	
 					<p:commandButton value="Atualizar" action="#{emailBean.editar}" update="form"
@@ -54,7 +66,7 @@
 						width: 8rem;
 						padding: 1px 0 5px 5px;"/>
 
-				</p:panelGrid>
+				
 			</p:panel>
 		</h:form>
 	</h:body>

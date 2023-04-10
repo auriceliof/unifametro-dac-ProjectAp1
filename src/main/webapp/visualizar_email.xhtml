@@ -23,11 +23,13 @@
 				margin-bottom: 10px;"/>
 				
 			<p:panelGrid columns="2">
-				<p:outputLabel value="Destinatário: " for="tipo"/>
-				<p:selectOneMenu id="tipo" value="#{emailBean.email.id}">	
+				<p:outputLabel value="Destinatário: "/>
+				
+				<p:selectOneMenu  value="#{emailBean.email.id}" >	
 					<f:selectItem itemLabel="" />	
-					<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />				
-				</p:selectOneMenu>		
+					<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />			
+				</p:selectOneMenu>
+			
 			</p:panelGrid>				
 			
 			<p:commandButton value="Atualizar" action="#{emailBean.listarPorId}" update="form"
@@ -37,8 +39,9 @@
 						margin-right: 10px;
 						width: 8rem;
 						padding: 1px 0 5px 5px;"/>
+						
 							
-			<p:dataTable  value="#{emailBean.email}" var="l" >			
+			<p:dataTable value="#{emailBean.email}" var="l" >			
 			
 				<p:column headerText="Id">
 					<p:column>
