@@ -45,6 +45,7 @@ public class EmailBean {
 		EmailDao.listarPorId(Email.getId());
 		return null;
 	}	
+
 		
 	public Email getEmail() {
 		return Email;
