@@ -115,7 +115,9 @@
 							background-color: #f39c12;
 							margin-right: 10px;
 							width: 8rem;">
-							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>							
+							
+							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>
+														
 						</p:commandButton>
 															
 					</p:column>										
@@ -164,12 +166,27 @@
 					<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
 					<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}" disabled="true"/>
 					
-					<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: " />
-					<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}" disabled="true"/>			
+					
+					<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}" disabled="true" rendered="#{emailBean.email.confirmaLeitura}">
+						<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: " />
 							
+							
+								<p:commandButton value="Sim" onclick="PF('leituraSim').show()" />			
+								<p:commandButton value="Não" oncomplete="PF('visualizar').hide()" update="form"/>
+							
+								
+					</p:selectBooleanCheckbox>				
+														
+						<p:dialog header="Quantide de Emails" widgetVar="leituraSim" showEffect="fade">
+	   					 <p class="m-0"><p:outputLabel value="Confirmado!"/></p>
+	   					 
+	   					 	<p:commandButton value="Fechar" oncomplete="PF('visualizar').hide()"/>
+						</p:dialog>
+							
+									
 				</p:panelGrid>
 				
-				<p:commandButton value="Fechar" oncomplete="PF('visualizar').hide()" update="form"/>	
+					
 				
 		</h:form>
 	
