@@ -11,38 +11,19 @@
 	<title>View</title>
 </h:head>
 
-<h:body>	
+<h:body>
 		
-	<h:form id="form">
+		<h:form id="form1">
 	
-		<p:panel header="Página de Visualização de Email">
-		
+		<p:panel header="Página de Listagem de Emails">		
+				
 			<p:link outcome="itens_enviados" value="voltar" 
 				style="display: flex;
 				justify-content: end; 
 				margin-bottom: 10px;"/>
-				
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Destinatário: "/>
-				
-				<p:selectOneMenu  value="#{emailBean.email.id}" >	
-					<f:selectItem itemLabel="" />	
-					<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />			
-				</p:selectOneMenu>
 			
-			</h:panelGrid>				
-			
-			<p:commandButton value="Atualizar" action="#{emailBean.listarPorId}" update="form"
-						style="border: 5px solid; 
-						border-radius: 25px; 
-						background-color: #f39c12;
-						margin-right: 10px;
-						width: 8rem;
-						padding: 1px 0 5px 5px;"/>
-						
-							
-			<p:dataTable value="#{emailBean.email}" var="l" >			
-			
+			<p:dataTable id="dt" value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}">	
+										
 				<p:column headerText="Id">
 					<p:column>
 						<p:outputLabel value="#{l.id}"/>							
@@ -58,16 +39,72 @@
 						<p:outputLabel value="#{l.corpo}"/>							
 					</p:column>										
 				</p:column>
-				<p:column headerText="Confirma Leitura">
+				<p:column headerText="Data de envio">
+					<p:column>
+						<p:outputLabel value="#{l.dataEnvio}">
+							<f:convertDateTime pattern="dd/MM/YYYY"/>
+						</p:outputLabel>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Confirma leitura">
 					<p:column>
 						<p:outputLabel value="#{l.confirmaLeitura}"/>							
 					</p:column>										
 				</p:column>
-				<p:column></p:column>
-				
+								
+				<p:column headerText="Ações">
+					<p:column>
+						<p:commandButton icon="pi pi-search" oncomplete="PF('visualizar').show()" update="form_view"
+							style="border: 5px solid; 
+							border-radius: 50%;
+							background-color: #f39c12;
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">							
+							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>								
+						</p:commandButton>
+															
+					</p:column>				
+										
+				</p:column>
+							
 			</p:dataTable>
-		</p:panel>
+			
+		</p:panel>	
+		
 	</h:form>
-</h:body>
+
+		
+	<p:dialog header="Visualizar Email" widgetVar="visualizar" >
+		<h:form id="form_view" >
+			<h:panelGrid columns="2" cellpadding="5" id="visualizar">
+					<p:outputLabel for="destinatario" value="Destinatário: "/>
+					<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" disabled="true"/>
+					
+					<p:outputLabel for="corpo" value="Corpo: "/>
+					<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}" disabled="true"/>				
+					
+					<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
+					<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}" disabled="true"/>
+										
+					<p:outputLabel id="confirmaLeitura"  disabled="true" rendered="#{emailBean.email.confirmaLeitura}">
+						<p:outputLabel for="confirmaLeitura" value="Há uma solicitação de confirmação de leitura! Deseja confirmar? " 
+							style="color:#e55039"/>
+							<div style="margin-top: 25px">							
+								<p:commandButton value="Sim" onclick="PF('leituraSim').show()" style="background-color:#27ae60; margin-right: 10px;"/>			
+								<p:commandButton value="Não" oncomplete="PF('visualizar').hide()" style="background-color:#e55039" update="form1" />
+							</div>		
+					</p:outputLabel>				
+														
+					<p:dialog header="Confirmação de Leitura" widgetVar="leituraSim" showEffect="fade">
+	  				<p class="m-0" style="margin-bottom: 40px"><p:outputLabel value="Enviada com sucesso!"/></p>
+	  					 
+   					<p:commandButton value="Fechar" oncomplete="PF('visualizar').hide()"/>
+				</p:dialog>									
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>	
+		
+</h:body>	
 
 </html>

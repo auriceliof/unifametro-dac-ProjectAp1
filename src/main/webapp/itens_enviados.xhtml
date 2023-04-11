@@ -13,7 +13,7 @@
 
 <h:body>	
 		
-	<h:form id="form">
+	<h:form id="form1">
 	
 		<p:panel header="Página de Listagem de Emails">
 			<div style="display: flex; justify-content: space-around; margin-bottom: 25px;">
@@ -50,7 +50,7 @@
 					width: 8rem;"/>								
 			</div>
 			
-			<p:dataTable value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}">	
+			<p:dataTable id="dt" value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}">	
 										
 				<p:column headerText="Id">
 					<p:column>
@@ -113,14 +113,15 @@
 							width: 3rem;
 							height: 3rem;">	
 							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>							
-						</p:commandButton>									
+						</p:commandButton>	
+																				
 					</p:column>									
 				</p:column>
 							
 			</p:dataTable>
 			
-		</p:panel>
-	
+		</p:panel>	
+		
 	</h:form>
 	
 	<p:dialog header="Quantide de Emails" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
@@ -143,8 +144,8 @@
 						<p:outputLabel for="confirmaLeitura" value="Há uma solicitação de confirmação de leitura! Deseja confirmar? " 
 							style="color:#e55039"/>
 							<div style="margin-top: 25px">							
-								<p:commandButton value="Sim" onclick="PF('leituraSim').show()" style="background-color:#27ae60"/>			
-								<p:commandButton value="Não" oncomplete="PF('visualizar').hide()" style="background-color:#e55039" update="form" />
+								<p:commandButton value="Sim" onclick="PF('leituraSim').show()" style="background-color:#27ae60; margin-right: 10px;"/>			
+								<p:commandButton value="Não" oncomplete="PF('visualizar').hide()" style="background-color:#e55039" update="form1" />
 							</div>		
 					</p:outputLabel>				
 														
@@ -160,33 +161,33 @@
 	<p:dialog header="Editar Email" widgetVar="editar">
 		<h:form id="form_edit">
 			<h:panelGrid columns="2" cellpadding="5" id="editar">
-					<p:outputLabel for="destinatario" value="Destinatário: "/>
-					<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
-					
-					<p:outputLabel for="corpo" value="Corpo: "/>
-					<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}"/>				
-					
-					<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
-					<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}"/>
-					
-					<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: "/>
-					<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}"/>			
-				</h:panelGrid>
+				<p:outputLabel for="destinatario" value="Destinatário: "/>
+				<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
 				
-				<p:commandButton value="Atualizar" action="#{emailBean.editar}" oncomplete="PF('editar').hide()" style="background-color:#27ae60" update="form"/>		
+				<p:outputLabel for="corpo" value="Corpo: "/>
+				<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}"/>				
+				
+				<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
+				<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}"/>
+				
+				<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: "/>
+				<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}"/>			
+			</h:panelGrid>
+				
+			<p:commandButton value="Atualizar" action="#{emailBean.editar}" oncomplete="PF('editar').hide()" style="background-color:#27ae60; margin-top: 40px;" update="form1"/>		
 		</h:form>
 	</p:dialog>
-			
+	
 	<p:dialog header="Deseja relamente excluir o Email?" widgetVar="excluir">
 		<h:form id="form_del">
 			<h:panelGrid columns="2" cellpadding="5" id="excluir">
 				<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" disabled="true"/>
 			</h:panelGrid>
 				
-			<p:commandButton value="Sim" action="#{emailBean.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60" update="form" />	
-			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" style="background-color:#e55039" update="form"/>			
+			<p:commandButton value="Sim" action="#{emailBean.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60; margin-right: 10px; margin-top: 20px;"/>	
+			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" style="background-color:#e55039"/>			
 		</h:form>					
-	</p:dialog>		
+	</p:dialog>	
 
 </h:body>
 

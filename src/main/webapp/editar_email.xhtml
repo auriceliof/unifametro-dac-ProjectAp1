@@ -9,70 +9,89 @@
 
 	<h:head><title>Editing</title></h:head>
 	
-	<h:body>
-		<h:form id="form">
-			<p:messages id="messages" showDetail="true" closable="true">
-				<p:autoUpdate />
-			</p:messages>
+<h:body>	
+		
+	<h:form id="form1">
+	
+		<p:panel header="Página de Edição de Emails">
 			
-			<p:panel header="Página de Edição de E-mail">
-			
-			<div>
-				<p:link outcome="itens_enviados" value="voltar" 
-					style="display: flex;
-					justify-content: end; 
-					margin-bottom: 10px;
-					margin-top: 10px;"/>		
-			</div>
+			<p:link outcome="itens_enviados" value="voltar" 
+				style="display: flex;
+				justify-content: end; 
+				margin-bottom: 10px;"/>
 				
-				<h:panelGrid columns="2">
-					
-					<p:outputLabel value="Escolha um email:  " for="tipo"/>
-					<p:selectOneMenu id="tipo" value="#{emailBean.email.id}">	
-						<f:selectItem itemLabel="" update="form" />	
-						<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />				
-					
-						<p>
-						<p:commandButton value="Editar" oncomplete="PF('editar').show()" update="form2">
+			<p:dataTable id="dt" value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}">	
+										
+				<p:column headerText="Id">
+					<p:column>
+						<p:outputLabel value="#{l.id}"/>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Destionatário">
+					<p:column>
+						<p:outputLabel value="#{l.destinatario}"/>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Corpo">
+					<p:column>
+						<p:outputLabel value="#{l.corpo}"/>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Data de envio">
+					<p:column>
+						<p:outputLabel value="#{l.dataEnvio}">
+							<f:convertDateTime pattern="dd/MM/YYYY"/>
+						</p:outputLabel>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Confirma leitura">
+					<p:column>
+						<p:outputLabel value="#{l.confirmaLeitura}"/>							
+					</p:column>										
+				</p:column>
+								
+				<p:column headerText="Ações">
+							
+					<p:column>
+						<p:commandButton icon="pi pi-pencil" oncomplete="PF('editar').show()" update="form_edit"
+							style="border: 5px solid; 
+							border-radius: 50%; 
+							background-color: #8e44ad;
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">	
 							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>							
 						</p:commandButton>									
-						
-						</p>
-					</p:selectOneMenu>
-				</h:panelGrid>
+					</p:column>	
+												
+				</p:column>
+							
+			</p:dataTable>
+			
+		</p:panel>	
+		
+	</h:form>
+		
+	<p:dialog header="Editar Email" widgetVar="editar">
+		<h:form id="form_edit">
+			<h:panelGrid columns="2" cellpadding="5" id="editar">
+				<p:outputLabel for="destinatario" value="Destinatário: "/>
+				<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
 				
-					<h:form id="form2">
-						<h:panelGrid columns="2" cellpadding="5" id="editar">
-							<p:outputLabel for="destinatario" value="Destinatário: "/>
-							<p:inputText id="destinatario" value="#{emailBean.email.destinatario}"/>
-							
-							<p:outputLabel for="corpo" value="Corpo: "/>
-							<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}"/>				
-							
-							<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
-							<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}"/>
-							
-							<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: "/>
-							<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}"/>					
-						</h:panelGrid>
-					</h:form>
-					
-																	
-					<p:commandButton value="Atualizar" action="#{emailBean.editar}" update="form"
-						style="border: 5px solid; 
-						border-radius: 25px; 
-						background-color: #8e44ad;
-						margin-right: 10px;
-						width: 8rem;
-						padding: 1px 0 5px 5px;"/>
-
+				<p:outputLabel for="corpo" value="Corpo: "/>
+				<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}"/>				
 				
-			</p:panel>
+				<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
+				<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}"/>
+				
+				<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: "/>
+				<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}"/>			
+			</h:panelGrid>
+				
+			<p:commandButton value="Atualizar" action="#{emailBean.editar}" oncomplete="PF('editar').hide()" style="background-color:#27ae60; margin-top: 40px;" update="form1"/>		
 		</h:form>
-	</h:body>
-	
-	
-	
-	
-	
+	</p:dialog>
+
+</h:body>
+
 </html>
