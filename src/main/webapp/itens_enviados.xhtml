@@ -50,7 +50,8 @@
 					width: 8rem;"/>								
 			</div>
 			
-			<p:dataTable id="dt" value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}">	
+			<p:dataTable id="dt" value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}"
+			paginator="true" rows="3" paginatorPosition="bottom">	
 										
 				<p:column headerText="Id">
 					<p:column>
