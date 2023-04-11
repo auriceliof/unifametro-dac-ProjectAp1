@@ -38,7 +38,7 @@
 						<p:outputLabel value="#{l.corpo}"/>							
 					</p:column>										
 				</p:column>
-				<p:column headerText="Data de envio">
+				<p:column headerText="Data de envio" sortBy="#{l.dataEnvio}">
 					<p:column>
 						<p:outputLabel value="#{l.dataEnvio}">
 							<f:convertDateTime pattern="dd/MM/YYYY"/>
