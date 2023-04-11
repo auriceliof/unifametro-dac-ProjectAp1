@@ -47,12 +47,7 @@
 					style="border: 5px solid; 
 					border-radius: 25px; 
 					background-color: #f78fb3;
-					width: 8rem;"/>
-				
-				<p:dialog header="Quantide de Emails" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
-	   				 <p class="m-0"><p:outputLabel value="#{emailBean.contarEmail}"/></p>
-				</p:dialog>	
-								
+					width: 8rem;"/>								
 			</div>
 			
 			<p:dataTable value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}">	
@@ -87,37 +82,39 @@
 								
 				<p:column headerText="Ações">
 					<p:column>
-						<p:commandButton value="Visualizar" oncomplete="PF('visualizar').show()" update="form_view"
+						<p:commandButton icon="pi pi-search" oncomplete="PF('visualizar').show()" update="form_view"
 							style="border: 5px solid; 
-							border-radius: 25px; 
+							border-radius: 50%;
 							background-color: #f39c12;
-							margin-right: 10px;
-							width: 8rem;">							
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">							
 							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>								
 						</p:commandButton>
 															
 					</p:column>				
 					<p:column>
-						<p:commandButton value="Editar" oncomplete="PF('editar').show()" update="form_edit"
+						<p:commandButton icon="pi pi-pencil" oncomplete="PF('editar').show()" update="form_edit"
 							style="border: 5px solid; 
-							border-radius: 25px; 
+							border-radius: 50%; 
 							background-color: #8e44ad;
-							margin-right: 10px;
-							width: 8rem;">
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">	
 							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>							
 						</p:commandButton>									
 					</p:column>	
 					<p:column>
-						<p:commandButton value="Excluir" oncomplete="PF('excluir').show()" update="form_del"
+						<p:commandButton icon="pi pi-trash" oncomplete="PF('excluir').show()" update="form_del"
 							style="border: 5px solid; 
-							border-radius: 25px; 
+							border-radius: 50%; 
 							background-color: #e55039;
-							margin-right: 10px;
-							width: 8rem;">	
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">	
 							<f:setPropertyActionListener value="#{l}" target="#{emailBean.email}"/>							
 						</p:commandButton>									
-					</p:column>				
-												
+					</p:column>									
 				</p:column>
 							
 			</p:dataTable>
@@ -126,9 +123,13 @@
 	
 	</h:form>
 	
+	<p:dialog header="Quantide de Emails" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
+ 		<p:outputLabel value="#{emailBean.contarEmail}"/>
+	</p:dialog>
+		
 	<p:dialog header="Visualizar Email" widgetVar="visualizar" >
 		<h:form id="form_view" >
-			<p:panelGrid columns="2" cellpadding="5" id="visualizar">
+			<h:panelGrid columns="2" cellpadding="5" id="visualizar">
 					<p:outputLabel for="destinatario" value="Destinatário: "/>
 					<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" disabled="true"/>
 					
@@ -138,26 +139,27 @@
 					<p:outputLabel for="dataEnvio" value="Data de Envio: "/>
 					<p:datePicker id="dataEnvio" value="#{emailBean.email.dataEnvio}" disabled="true"/>
 										
-					<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}" disabled="true" rendered="#{emailBean.email.confirmaLeitura}">
-						<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: " />
+					<p:outputLabel id="confirmaLeitura"  disabled="true" rendered="#{emailBean.email.confirmaLeitura}">
+						<p:outputLabel for="confirmaLeitura" value="Há uma solicitação de confirmação de leitura! Deseja confirmar? " 
+							style="color:#e55039"/>
 							<div style="margin-top: 25px">							
-								<p:commandButton value="Sim" onclick="PF('leituraSim').show()" />			
-								<p:commandButton value="Não" oncomplete="PF('visualizar').hide()" update="form"/>
+								<p:commandButton value="Sim" onclick="PF('leituraSim').show()" style="background-color:#27ae60"/>			
+								<p:commandButton value="Não" oncomplete="PF('visualizar').hide()" style="background-color:#e55039" update="form" />
 							</div>		
-					</p:selectBooleanCheckbox>				
+					</p:outputLabel>				
 														
-					<p:dialog header="Quantide de Emails" widgetVar="leituraSim" showEffect="fade">
-	  				<p class="m-0"><p:outputLabel value="Confirmação de leitua enviada com sucesso!"/></p>
+					<p:dialog header="Confirmação de Leitura" widgetVar="leituraSim" showEffect="fade">
+	  				<p class="m-0" style="margin-bottom: 40px"><p:outputLabel value="Enviada com sucesso!"/></p>
 	  					 
    					<p:commandButton value="Fechar" oncomplete="PF('visualizar').hide()"/>
 				</p:dialog>									
-			</p:panelGrid>
+			</h:panelGrid>
 		</h:form>
 	</p:dialog>			
 	
 	<p:dialog header="Editar Email" widgetVar="editar">
 		<h:form id="form_edit">
-			<p:panelGrid columns="2" cellpadding="5" id="editar">
+			<h:panelGrid columns="2" cellpadding="5" id="editar">
 					<p:outputLabel for="destinatario" value="Destinatário: "/>
 					<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
 					
@@ -169,21 +171,20 @@
 					
 					<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: "/>
 					<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}"/>			
-				</p:panelGrid>
+				</h:panelGrid>
 				
-				<p:commandButton value="Atualizar" action="#{emailBean.editar}" oncomplete="PF('editar').hide()" update="form"/>		
+				<p:commandButton value="Atualizar" action="#{emailBean.editar}" oncomplete="PF('editar').hide()" style="background-color:#27ae60" update="form"/>		
 		</h:form>
 	</p:dialog>
 			
 	<p:dialog header="Deseja relamente excluir o Email?" widgetVar="excluir">
 		<h:form id="form_del">
-			<p:panelGrid columns="2" cellpadding="5" id="excluir">
-				<p:outputLabel for="destinatario" value="Destinatário: "/>
+			<h:panelGrid columns="2" cellpadding="5" id="excluir">
 				<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" disabled="true"/>
-			</p:panelGrid>
+			</h:panelGrid>
 				
-			<p:commandButton value="Sim" action="#{emailBean.deletar}" oncomplete="PF('excluir').hide()" update="form" />	
-			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" update="form"/>			
+			<p:commandButton value="Sim" action="#{emailBean.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60" update="form" />	
+			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" style="background-color:#e55039" update="form"/>			
 		</h:form>					
 	</p:dialog>		
 

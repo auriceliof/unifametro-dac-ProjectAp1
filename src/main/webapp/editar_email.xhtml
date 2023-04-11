@@ -25,9 +25,9 @@
 					margin-top: 10px;"/>		
 			</div>
 				
-				<p:panelGrid columns="2">
+				<h:panelGrid columns="2">
 					
-					<p:outputLabel value="Destinatário: " for="tipo"/>
+					<p:outputLabel value="Escolha um email:  " for="tipo"/>
 					<p:selectOneMenu id="tipo" value="#{emailBean.email.id}">	
 						<f:selectItem itemLabel="" update="form" />	
 						<f:selectItems value="#{emailBean.list}" var="l" itemLabel="#{l.destinatario}" itemValue="#{l.id}" />				
@@ -38,13 +38,13 @@
 						</p:commandButton>									
 						
 						</p>
-				</p:selectOneMenu>
-				</p:panelGrid>
+					</p:selectOneMenu>
+				</h:panelGrid>
 				
 					<h:form id="form2">
-						<p:panelGrid columns="2" cellpadding="5" id="editar">
+						<h:panelGrid columns="2" cellpadding="5" id="editar">
 							<p:outputLabel for="destinatario" value="Destinatário: "/>
-							<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
+							<p:inputText id="destinatario" value="#{emailBean.email.destinatario}"/>
 							
 							<p:outputLabel for="corpo" value="Corpo: "/>
 							<p:inputTextarea id="corpo" value="#{emailBean.email.corpo}"/>				
@@ -54,7 +54,7 @@
 							
 							<p:outputLabel for="confirmaLeitura" value="Confirma Leitura: "/>
 							<p:selectBooleanCheckbox id="confirmaLeitura" value="#{emailBean.email.confirmaLeitura}"/>					
-						</p:panelGrid>
+						</h:panelGrid>
 					</h:form>
 					
 																	

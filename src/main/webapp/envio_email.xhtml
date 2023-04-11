@@ -22,36 +22,39 @@
 				<p:link outcome="itens_enviados" value="voltar" 
 					style="display: flex;
 					justify-content: end; 
-					margin-bottom: 10px;
 					margin-top: 10px;"/>		
 			</div>
 			
-				<p:panelGrid columns="2">
-					<p:outputLabel value="Destinatário: "/>
-					<p:inputText value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
+				<h:panelGrid columns="1" >
+					<div >
+						<p:outputLabel value="Destinatário "/>
+						<p:inputText value="#{emailBean.email.destinatario}" required="true" requiredMessage="Campo Obrigatorio"/>
+					</div>
 					
-					<p:outputLabel value="Corpo: "/>
-					<p:inputTextarea value="#{emailBean.email.corpo}"/>				
+					<div style="margin-bottom: 20px;">
+						<p:outputLabel value="Corpo "/>
+						<p:inputTextarea value="#{emailBean.email.corpo}"/>				
+					</div>
 					
-					<p:outputLabel value="Data de Envio: "/>
-					<p:datePicker value="#{emailBean.email.dataEnvio}"/>
+					<div style="margin-bottom: 20px;">
+						<p:outputLabel value="Data de Envio "/>
+						<p:datePicker value="#{emailBean.email.dataEnvio}"/>
+					</div>
 					
-					<p:outputLabel value="Confirma Leitura: "/>
-					<p:selectBooleanCheckbox value="#{emailBean.email.confirmaLeitura}"/>
-									
-					<p:commandButton value="Salvar" action="#{emailBean.salvar}" update="form"
-						style="	border-radius: 25px; 
-								margin-right: 10px;
-								width: 8rem;
-								padding: 1px 0 5px 5px;"/>
-
-				</p:panelGrid>
+					<div style="margin-bottom: 20px;">
+						<p:outputLabel value="Confirma Leitura "/>
+						<p:selectBooleanCheckbox value="#{emailBean.email.confirmaLeitura}"/>
+					</div>
+					
+					<div style="margin-top: 30px;">
+						<p:commandButton value="Enviar" action="#{emailBean.salvar}" update="form"
+							style="	border-radius: 25px; 
+									margin-right: 10px;
+									width: 8rem;"/>
+					</div>				
+								
+				</h:panelGrid>
 			</p:panel>
 		</h:form>
-	</h:body>
-	
-	
-	
-	
-	
+	</h:body>	
 </html>
