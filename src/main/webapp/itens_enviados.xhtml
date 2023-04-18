@@ -14,8 +14,9 @@
 <h:body>	
 		
 	<h:form id="form1">
-	
+			
 		<p:panel header="Página de Listagem de Emails">
+		
 			<div style="display: flex; justify-content: space-around; margin-bottom: 25px;">
 				
 				<p:linkButton action="Enviar_email" outcome="envio_email" value="Enviar" icon="pi pi-send" 
@@ -42,11 +43,19 @@
 					width: 8rem;"/>
 				
 							
-				<p:commandButton value="Estatística" type="button" icon="pi pi-external-link" onclick="PF('dlg1').show()"
+				<p:commandButton value="Estatística" type="button" icon="pi pi-chart-line" onclick="PF('dlg1').show()"
 					style="border: 5px solid; 
 					border-radius: 25px; 
 					background-color: #f78fb3;
-					width: 8rem;"/>								
+					width: 8rem;"/>		
+					
+					
+				<p:linkButton action="Sair" outcome="login" icon="pi pi-sign-out" title="Sair" 
+					style="border: 5px solid; 
+					border-radius: 50%; 
+					background-color: #7f8c8d;
+					width: 3rem;"/>	
+										
 			</div>
 			
 			<p:dataTable id="dt" value="#{emailBean.list}" var="l" selection="#{emailBean.email}" selectionMode="single" rowKey="#{l.id}"
@@ -82,7 +91,7 @@
 								
 				<p:column headerText="Ações">
 					<p:column>
-						<p:commandButton icon="pi pi-search" oncomplete="PF('visualizar').show()" update="form_view"
+						<p:commandButton icon="pi pi-search" oncomplete="PF('visualizar').show()" title="Visualizar" update="form_view"
 							style="border: 5px solid; 
 							border-radius: 50%;
 							background-color: #f39c12;
@@ -94,7 +103,7 @@
 															
 					</p:column>				
 					<p:column>
-						<p:commandButton icon="pi pi-pencil" oncomplete="PF('editar').show()" update="form_edit"
+						<p:commandButton icon="pi pi-pencil" oncomplete="PF('editar').show()" title="Editar" update="form_edit"
 							style="border: 5px solid; 
 							border-radius: 50%; 
 							background-color: #8e44ad;
@@ -105,7 +114,7 @@
 						</p:commandButton>									
 					</p:column>	
 					<p:column>
-						<p:commandButton icon="pi pi-trash" oncomplete="PF('excluir').show()" update="form_del"
+						<p:commandButton icon="pi pi-trash" oncomplete="PF('excluir').show()" title="Deletar" update="form_del"
 							style="border: 5px solid; 
 							border-radius: 50%; 
 							background-color: #e55039;
@@ -150,10 +159,10 @@
 					</p:outputLabel>				
 														
 					<p:dialog header="Confirmação de Leitura" widgetVar="leituraSim" showEffect="fade">
-	  				<p class="m-0" style="margin-bottom: 40px"><p:outputLabel value="Enviada com sucesso!"/></p>
-	  					 
-   					<p:commandButton value="Fechar" oncomplete="PF('visualizar').hide()"/>
-				</p:dialog>									
+		  				<p class="m-0" style="margin-bottom: 40px"><p:outputLabel value="Enviada com sucesso!"/></p>
+		  					 
+	   					<p:commandButton value="Fechar" oncomplete="PF('visualizar').hide()"/>
+					</p:dialog>									
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>			
@@ -184,7 +193,7 @@
 				<p:inputText id="destinatario" value="#{emailBean.email.destinatario}" disabled="true"/>
 			</h:panelGrid>
 				
-			<p:commandButton value="Sim" action="#{emailBean.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60; margin-right: 10px; margin-top: 20px;"/>	
+			<p:commandButton value="Sim" action="#{emailBean.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60; margin-right: 10px; margin-top: 20px;" update="form1"/>	
 			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" style="background-color:#e55039"/>			
 		</h:form>					
 	</p:dialog>	

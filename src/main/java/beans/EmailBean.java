@@ -41,10 +41,9 @@ public class EmailBean implements Serializable{
 		return null;
 	}
 
-	public String deletar() {		
+	public void deletar() {		
 		EmailDao.deletar(email);
-		email = new Email();
-		return null;
+		list = EmailDao.listarTodos();
 	}
 	
 	public String listarPorId() {		
