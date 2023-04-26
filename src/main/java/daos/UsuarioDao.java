@@ -1,14 +1,10 @@
 package daos;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
-//import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-//import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import entities.Email;
 import entities.Usuario;
 import utils.JPAUtil;
 
@@ -51,8 +47,7 @@ public class UsuarioDao {
 		return list;
 	}
 	
-	
-	
+		
 	public Usuario getUsuario(String nomeUsuario, String senha) {
 		
 		EntityManager em = JPAUtil.creatingEntityManager();

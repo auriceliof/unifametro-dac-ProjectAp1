@@ -64,10 +64,10 @@ public class LoginManagedBean implements Serializable{
 		if (usuario == null) {
 			usuario = new Usuario();
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario nao encontrado!", "Erro no Login!"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ou senha inválido!", "Erro no Login!"));
 			return null;
 		} else {
-			return "/main";
+			return "/itens_enviados";
 		}
 
 	}	
