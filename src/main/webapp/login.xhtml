@@ -23,13 +23,20 @@
 				
 				<h:panelGrid columns="1"  style="display: flex; justify-content: center; margin-top: 40px">
 					<div >
-						<p:outputLabel for="nomeUsuario" value="Usuário: "/>
+						<p:outputLabel for="nomeUsuario" value="Usuário:"/>
 						<p:inputText id="nomeUsuario" value="#{LoginMB.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio"/>
 					</div>
 					
 					<div style="margin-bottom: 20px;">
-						<p:outputLabel for="senha" value="Senha: "/>
-						<p:password id="senha" value="#{LoginMB.usuario.senha}" />				
+						<p:outputLabel for="senha" value="Senha:"/>
+						<p:password id="senha" value="#{LoginMB.usuario.senha}" required="true" requiredMessage="Campo Obrigatorio"/>				
+					</div>
+					
+					<div>
+					<p:link outcome="criar_usuario" value="Criar usuário" 
+						style="display: flex;
+						justify-content: end; 
+						margin-top: 10px;"/>		
 					</div>
 					
 					<div style="margin-top: 30px; ">

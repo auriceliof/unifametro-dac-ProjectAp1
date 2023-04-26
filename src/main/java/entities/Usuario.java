@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,6 +15,7 @@ import javax.persistence.TemporalType;
 public class Usuario {
 
       @Id
+      @GeneratedValue
       @Column(name="id", nullable=false, unique=true)
       private int id;
 
@@ -23,12 +25,21 @@ public class Usuario {
       @Column(name="password", nullable=false, unique=false)
       private String senha;
 
-      @Column(name="lastAccess", unique=true)
+      @Column(name="lastAccess")
       @Temporal(TemporalType.DATE)
       private Date ultimoAcesso;
 
+      
+      public int getId() {
+		return id;
+      }
+	
+      public void setId(int id) {
+			this.id = id;
+      }
+	
       public String getNomeUsuario() {
-            return nomeUsuario;
+	       return nomeUsuario;
       }
 
       public void setNomeUsuario(String nomeUsuario) {
