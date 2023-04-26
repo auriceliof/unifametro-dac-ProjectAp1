@@ -9,25 +9,36 @@
 
 <h:head><title>Login</title></h:head>
 
-	<h:body>
+	<h:body style="background: #faf0e6;">
 	
 		<h:form id="form">
 			
 			<p:messages id="messages" />
 			
-			<p:panel header="Página de Login">
+			<p:panel header="Página de Login" >
 				
-				<div id="tLogin" style="text-align: center; font-size: 2em; font-style: italic; color: #e67e22;">
+				<div id="tLogin" 
+					style="text-align: center; 
+					font-size: 2em; 
+					font-style: italic; 
+					color: #e67e22;
+					margin-top: 30px;">
 					WEBMAIL
 				</div>
 				
-				<h:panelGrid columns="1"  style="display: flex; justify-content: center; margin-top: 40px">
-					<div >
+				<h:panelGrid columns="1"  
+					style="display: flex; 
+					justify-content: center; 
+					margin: 40px; 
+					border-radius: 10px; 
+					background: #f0f8ff">
+					
+					<div style="margin-top: 30px;">
 						<p:outputLabel for="nomeUsuario" value="Usuário:"/>
 						<p:inputText id="nomeUsuario" value="#{LoginMB.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio"/>
 					</div>
 					
-					<div style="margin-bottom: 20px;">
+					<div style="margin: 20px 0 20px 0;">
 						<p:outputLabel for="senha" value="Senha:"/>
 						<p:password id="senha" value="#{LoginMB.usuario.senha}" required="true" requiredMessage="Campo Obrigatorio"/>				
 					</div>
@@ -43,7 +54,8 @@
 						<p:linkButton icon="pi pi-sign-in"  action="#{LoginMB.envia}" ajax="false" outcome="itens_enviados" value="Entrar" 
 							style="border: 5px solid; 
 							border-radius: 25px; 
-							margin-left: 40px"/>	
+							margin-left: 40px;
+							margin-bottom: 30px;"/>	
 					</div>					
 				</h:panelGrid>
 			</p:panel>

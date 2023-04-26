@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Listining Users</title>
+</h:head>
+
+<h:body>	
+		
+	<h:form id="form1">
+			
+		<p:panel header="Página de Listagem de Usuários">
+		
+			<p:link outcome="itens_enviados" value="voltar" 
+				style="display: flex;
+				justify-content: end; 
+				margin-bottom: 10px;"/>
+		
+			<div style="display: flex; justify-content: space-between; margin-bottom: 25px;">
+										
+				<p:commandButton value="Estatística" type="button" icon="pi pi-chart-line" onclick="PF('dlg1').show()"
+					style="border: 5px solid; 
+					border-radius: 25px; 
+					background-color: #f78fb3;
+					width: 8rem;"/>		
+					
+					
+				<p:linkButton action="Sair" outcome="login" icon="pi pi-sign-out" title="Sair" 
+					style="border: 5px solid; 
+					border-radius: 50%; 
+					background-color: #7f8c8d;
+					width: 3rem;"/>	
+										
+			</div>
+			
+			<p:dataTable id="dt" value="#{LoginMB.list}" var="l" selection="#{LoginMB.usuario}" selectionMode="single" rowKey="#{l.id}"
+			paginator="true" rows="3" paginatorPosition="bottom">	
+										
+				<p:column headerText="Id">
+					<p:column>
+						<p:outputLabel value="#{l.id}"/>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Usuário">
+					<p:column>
+						<p:outputLabel value="#{l.nomeUsuario}"/>							
+					</p:column>										
+				</p:column>
+				<p:column headerText="Último Acesso">
+					<p:column>
+						<p:outputLabel value="#{l.ultimoAcesso}"/>							
+					</p:column>										
+				</p:column>
+								
+				<p:column headerText="Ações">
+					<p:column>
+						<p:commandButton icon="pi pi-search" oncomplete="PF('visualizar').show()" title="Visualizar" update="form_view"
+							style="border: 5px solid; 
+							border-radius: 50%;
+							background-color: #f39c12;
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">							
+							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>								
+						</p:commandButton>
+															
+					</p:column>				
+					<p:column>
+						<p:commandButton icon="pi pi-pencil" oncomplete="PF('editar').show()" title="Editar" update="form_edit"
+							style="border: 5px solid; 
+							border-radius: 50%; 
+							background-color: #8e44ad;
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">	
+							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>							
+						</p:commandButton>									
+					</p:column>	
+					<p:column>
+						<p:commandButton icon="pi pi-trash" oncomplete="PF('excluir').show()" title="Deletar" update="form_del"
+							style="border: 5px solid; 
+							border-radius: 50%; 
+							background-color: #e55039;
+							margin-right: 7px;
+							width: 3rem;
+							height: 3rem;">	
+							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>							
+						</p:commandButton>	
+																				
+					</p:column>									
+				</p:column>
+							
+			</p:dataTable>
+			
+		</p:panel>	
+		
+	</h:form>
+	
+	<p:dialog header="Quantide de Usuário" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
+ 		<p:outputLabel value="#{LoginMB.contarUsuario}"/>
+	</p:dialog>
+		
+	<p:dialog header="Visualizar Email" widgetVar="visualizar" >
+		<h:form id="form_view" >
+			<h:panelGrid columns="2" cellpadding="5" id="visualizar">
+				<p:outputLabel for="usuario" value="Usuário: "/>
+				<p:inputText id="usuario" value="#{LoginMB.usuario.nomeUsuario}" disabled="true"/>
+				
+				<p:outputLabel for="senha" value="Senha: "/>
+				<p:inputText id="senha" value="#{LoginMB.usuario.senha}" disabled="true"/>				
+				
+				<p:outputLabel for="dataAcesso" value="Último Acesso: "/>
+				<p:datePicker id="dataAcesso" value="#{LoginMB.usuario.ultimoAcesso}" disabled="true"/>														
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>			
+	
+	<p:dialog header="Editar Email" widgetVar="editar">
+		<h:form id="form_edit">
+			<h:panelGrid columns="2" cellpadding="5" id="editar">
+				<p:outputLabel for="usuario" value="Usuário:"/>
+				<p:inputText id="usuario" value="#{LoginMB.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio"/>
+				
+				<p:outputLabel for="senha" value="Senha:"/>
+				<p:inputText id="senha" value="#{LoginMB.usuario.senha}" required="true" requiredMessage="Campo Obrigatorio"/>			
+			</h:panelGrid>
+				
+			<p:commandButton value="Atualizar" action="#{LoginMB.editar}" oncomplete="PF('editar').hide()" style="background-color:#27ae60; margin-top: 40px;" update="form1"/>		
+		</h:form>
+	</p:dialog>
+	
+	<p:dialog header="Deseja relamente excluir o Usuário?" widgetVar="excluir">
+		<h:form id="form_del">
+			<h:panelGrid columns="2" cellpadding="5" id="excluir">
+				<p:inputText id="usuario" value="#{LoginMB.usuario.nomeUsuario}" disabled="true"/>
+			</h:panelGrid>
+				
+			<p:commandButton value="Sim" action="#{LoginMB.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60; margin-right: 10px; margin-top: 20px;" update="form1"/>	
+			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" style="background-color:#e55039"/>			
+		</h:form>					
+	</p:dialog>	
+
+</h:body>	
+
+</html>
