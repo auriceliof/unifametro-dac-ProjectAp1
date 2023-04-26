@@ -13,6 +13,8 @@
 	
 		<h:form id="form">
 			
+			<p:messages id="messages" />
+			
 			<p:panel header="Página de Login">
 				
 				<div id="tLogin" style="text-align: center; font-size: 2em; font-style: italic; color: #e67e22;">
@@ -21,17 +23,17 @@
 				
 				<h:panelGrid columns="1"  style="display: flex; justify-content: center; margin-top: 40px">
 					<div >
-						<p:outputLabel value="Usuário: "/>
-						<p:inputText value="" required="true" requiredMessage="Campo Obrigatorio"/>
+						<p:outputLabel for="nomeUsuario" value="Usuário: "/>
+						<p:inputText id="nomeUsuario" value="#{LoginMB.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio"/>
 					</div>
 					
 					<div style="margin-bottom: 20px;">
-						<p:outputLabel value="Senha: "/>
-						<p:password value=" "/>				
+						<p:outputLabel for="senha" value="Senha: "/>
+						<p:password id="senha" value="#{LoginMB.usuario.senha}" />				
 					</div>
 					
 					<div style="margin-top: 30px; ">
-						<p:linkButton icon="pi pi-sign-in"  action="Entrar" outcome="itens_enviados" value="Entrar" 
+						<p:linkButton icon="pi pi-sign-in"  action="#{LoginMB.envia}" ajax="false" outcome="itens_enviados" value="Entrar" 
 							style="border: 5px solid; 
 							border-radius: 25px; 
 							margin-left: 40px"/>	
