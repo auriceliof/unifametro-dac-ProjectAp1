@@ -23,6 +23,11 @@
 				margin-bottom: 10px;"/>
 		
 			<div style="display: flex; justify-content: space-between; margin-bottom: 25px;">
+			
+				<p:linkButton action="Criar_usuario" outcome="criar_usuario" value="Novo" icon="pi pi-user" 
+					style="border: 5px solid; 
+					border-radius: 25px; 
+					width: 8rem;"/>
 										
 				<p:commandButton value="Estatística" type="button" icon="pi pi-chart-line" onclick="PF('dlg1').show()"
 					style="border: 5px solid; 
@@ -75,9 +80,9 @@
 							width: 3rem;
 							height: 3rem;">							
 							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>								
-						</p:commandButton>
-															
+						</p:commandButton>															
 					</p:column>				
+					
 					<p:column>
 						<p:commandButton icon="pi pi-pencil" oncomplete="PF('editar').show()" title="Editar" update="form_edit"
 							style="border: 5px solid; 
@@ -89,6 +94,7 @@
 							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>							
 						</p:commandButton>									
 					</p:column>	
+					
 					<p:column>
 						<p:commandButton icon="pi pi-trash" oncomplete="PF('excluir').show()" title="Deletar" update="form_del"
 							style="border: 5px solid; 
@@ -98,8 +104,7 @@
 							width: 3rem;
 							height: 3rem;">	
 							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>							
-						</p:commandButton>	
-																				
+						</p:commandButton>														
 					</p:column>									
 				</p:column>
 							
