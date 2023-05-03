@@ -28,20 +28,20 @@
 				<h:panelGrid columns="1" >
 					<div >
 						<p:outputLabel for="login" value="Login do usuário "/>
-						<p:inputText id="login" value="#{LoginMB.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio"/>
+						<p:inputText id="login" value="#{usuarioBean.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio"/>
 					</div>
 					
 					<div style="margin-bottom: 20px;">
 						<p:outputLabel for="senha" value="Senha: "/>
-						<p:inputText id="senha" value="#{LoginMB.usuario.senha}" />				
+						<p:inputText id="senha" value="#{usuarioBean.usuario.senha}" />				
 					</div>
 					
 					<div style="margin-bottom: 20px;">
-               			 <p:outputLabel id="dataCriacao" value="#{LoginMB.usuario.dataCriacao}" />		
+               			 <p:outputLabel id="dataCriacao" value="#{usuarioBean.usuario.dataCriacao}" />		
 					</div>
 					
 					<div style="margin-top: 30px;">
-						<p:commandButton value="Criar" action="#{LoginMB.salvar}" update="form"
+						<p:commandButton value="Criar" action="#{usuarioBean.salvar}" update="form"
 							style="	border-radius: 25px; 
 									margin-right: 10px;
 									width: 8rem;"/>

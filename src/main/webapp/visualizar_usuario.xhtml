@@ -44,7 +44,7 @@
 										
 			</div>
 			
-			<p:dataTable id="dt" value="#{LoginMB.list}" var="l" selection="#{LoginMB.usuario}" selectionMode="single" rowKey="#{l.id}"
+			<p:dataTable id="dt" value="#{usuarioBean.list}" var="l" selection="#{usuarioBean.usuario}" selectionMode="single" rowKey="#{l.id}"
 			paginator="true" rows="3" paginatorPosition="bottom">	
 										
 				<p:column headerText="Id">
@@ -79,7 +79,7 @@
 							margin-right: 7px;
 							width: 3rem;
 							height: 3rem;">							
-							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>								
+							<f:setPropertyActionListener value="#{l}" target="#{usuarioBean.usuario}"/>								
 						</p:commandButton>															
 					</p:column>				
 					
@@ -91,7 +91,7 @@
 							margin-right: 7px;
 							width: 3rem;
 							height: 3rem;">	
-							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>							
+							<f:setPropertyActionListener value="#{l}" target="#{usuarioBean.usuario}"/>							
 						</p:commandButton>									
 					</p:column>	
 					
@@ -103,7 +103,7 @@
 							margin-right: 7px;
 							width: 3rem;
 							height: 3rem;">	
-							<f:setPropertyActionListener value="#{l}" target="#{LoginMB.usuario}"/>							
+							<f:setPropertyActionListener value="#{l}" target="#{usuarioBean.usuario}"/>							
 						</p:commandButton>														
 					</p:column>									
 				</p:column>
@@ -115,23 +115,23 @@
 	</h:form>
 	
 	<p:dialog header="Quantide de Usuário" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
- 		<p:outputLabel value="#{LoginMB.contarUsuario}"/>
+ 		<p:outputLabel value="#{usuarioBean.contarUsuario}"/>
 	</p:dialog>
 		
 	<p:dialog header="Visualizar Usuario" widgetVar="visualizar" >
 		<h:form id="form_view" >
 			<h:panelGrid columns="2" cellpadding="5" id="visualizar">
 				<p:outputLabel for="usuario" value="Usuário: "/>
-				<p:inputText id="usuario" value="#{LoginMB.usuario.nomeUsuario}" disabled="true"/>
+				<p:inputText id="usuario" value="#{usuarioBean.usuario.nomeUsuario}" disabled="true"/>
 				
 				<p:outputLabel for="senha" value="Senha: "/>
-				<p:inputText id="senha" value="#{LoginMB.usuario.senha}" disabled="true"/>				
+				<p:inputText id="senha" value="#{usuarioBean.usuario.senha}" disabled="true"/>				
 				
 				<p:outputLabel for="dataCriacao" value="Data de Criação: "/>
-				<p:datePicker id="dataCriacao" value="#{LoginMB.usuario.dataCriacao}" disabled="true"/>		
+				<p:datePicker id="dataCriacao" value="#{usuarioBean.usuario.dataCriacao}" disabled="true"/>		
 				
 				<p:outputLabel for="dataAcesso" value="Último Acesso: "/>
-				<p:datePicker id="dataAcesso" value="#{LoginMB.usuario.ultimoAcesso}" disabled="true"/>														
+				<p:datePicker id="dataAcesso" value="#{usuarioBean.usuario.ultimoAcesso}" disabled="true"/>														
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>			
@@ -140,23 +140,23 @@
 		<h:form id="form_edit">
 			<h:panelGrid columns="2" cellpadding="5" id="editar">
 				<p:outputLabel for="usuario" value="Usuário:"/>
-				<p:inputText id="usuario" value="#{LoginMB.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio"/>
+				<p:inputText id="usuario" value="#{usuarioBean.usuario.nomeUsuario}" required="true" requiredMessage="Campo Obrigatorio"/>
 				
 				<p:outputLabel for="senha" value="Senha:"/>
-				<p:inputText id="senha" value="#{LoginMB.usuario.senha}" required="true" requiredMessage="Campo Obrigatorio"/>			
+				<p:inputText id="senha" value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="Campo Obrigatorio"/>			
 			</h:panelGrid>
 				
-			<p:commandButton value="Atualizar" action="#{LoginMB.editar}" oncomplete="PF('editar').hide()" style="background-color:#27ae60; margin-top: 40px;" update="form1"/>		
+			<p:commandButton value="Atualizar" action="#{usuarioBean.editar}" oncomplete="PF('editar').hide()" style="background-color:#27ae60; margin-top: 40px;" update="form1"/>		
 		</h:form>
 	</p:dialog>
 	
 	<p:dialog header="Deseja relamente excluir o Usuário?" widgetVar="excluir">
 		<h:form id="form_del">
 			<h:panelGrid columns="2" cellpadding="5" id="excluir">
-				<p:inputText id="usuario" value="#{LoginMB.usuario.nomeUsuario}" disabled="true"/>
+				<p:inputText id="usuario" value="#{usuarioBean.usuario.nomeUsuario}" disabled="true"/>
 			</h:panelGrid>
 				
-			<p:commandButton value="Sim" action="#{LoginMB.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60; margin-right: 10px; margin-top: 20px;" update="form1"/>	
+			<p:commandButton value="Sim" action="#{usuarioBean.deletar}" oncomplete="PF('excluir').hide()" style="background-color:#27ae60; margin-right: 10px; margin-top: 20px;" update="form1"/>	
 			<p:commandButton value="Não" oncomplete="PF('excluir').hide()" style="background-color:#e55039"/>			
 		</h:form>					
 	</p:dialog>	
