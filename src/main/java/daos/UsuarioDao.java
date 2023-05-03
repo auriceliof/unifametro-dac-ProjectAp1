@@ -55,7 +55,9 @@ public class UsuarioDao {
 		try {
 			Usuario usuario = (Usuario) em
 					.createQuery("SELECT u from Usuario u where u.nomeUsuario = :name and u.senha = :senha ")
-					.setParameter("name", nomeUsuario).setParameter("senha", senha).getSingleResult();
+					.setParameter("name", nomeUsuario)
+					.setParameter("senha", senha)
+					.getSingleResult();
 
 			return usuario;
 

@@ -52,6 +52,13 @@
 						<p:outputLabel value="#{l.nomeUsuario}"/>							
 					</p:column>										
 				</p:column>
+				<p:column headerText="Data de Criação">
+					<p:column>
+						<p:outputLabel value="#{l.dataCriacao}">
+							<f:convertDateTime pattern="dd/MM/YYYY"/>
+						</p:outputLabel>					
+					</p:column>										
+				</p:column>
 				<p:column headerText="Último Acesso">
 					<p:column>
 						<p:outputLabel value="#{l.ultimoAcesso}"/>							
@@ -106,7 +113,7 @@
  		<p:outputLabel value="#{LoginMB.contarUsuario}"/>
 	</p:dialog>
 		
-	<p:dialog header="Visualizar Email" widgetVar="visualizar" >
+	<p:dialog header="Visualizar Usuario" widgetVar="visualizar" >
 		<h:form id="form_view" >
 			<h:panelGrid columns="2" cellpadding="5" id="visualizar">
 				<p:outputLabel for="usuario" value="Usuário: "/>
@@ -114,6 +121,9 @@
 				
 				<p:outputLabel for="senha" value="Senha: "/>
 				<p:inputText id="senha" value="#{LoginMB.usuario.senha}" disabled="true"/>				
+				
+				<p:outputLabel for="dataCriacao" value="Data de Criação: "/>
+				<p:datePicker id="dataCriacao" value="#{LoginMB.usuario.dataCriacao}" disabled="true"/>		
 				
 				<p:outputLabel for="dataAcesso" value="Último Acesso: "/>
 				<p:datePicker id="dataAcesso" value="#{LoginMB.usuario.ultimoAcesso}" disabled="true"/>														

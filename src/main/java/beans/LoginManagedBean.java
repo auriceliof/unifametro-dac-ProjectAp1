@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import daos.EmailDao;
 import daos.UsuarioDao;
 
 import entities.Usuario;
@@ -27,6 +26,20 @@ public class LoginManagedBean implements Serializable{
 	private List<Usuario> list;
 	
 	private  String contarUsuario;
+	
+	public String envia() {
+
+		usuario = usuarioDAO.getUsuario(usuario.getNomeUsuario(), usuario.getSenha());
+		if (usuario == null) {
+			usuario = new Usuario();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ou senha inválido!", "Erro no Login!"));
+			return null;
+		} else {
+			return "/itens_enviados";
+		}
+
+	}
 		
 	public String salvar() {
 			
@@ -56,20 +69,6 @@ public class LoginManagedBean implements Serializable{
 	public String listarTodos() {		
 		UsuarioDao.listarTodos();
 		return null;
-	}	
-	
-	public String envia() {
-
-		usuario = usuarioDAO.getUsuario(usuario.getNomeUsuario(), usuario.getSenha());
-		if (usuario == null) {
-			usuario = new Usuario();
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ou senha inválido!", "Erro no Login!"));
-			return null;
-		} else {
-			return "/itens_enviados";
-		}
-
 	}	
 	
 

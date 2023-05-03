@@ -19,14 +19,18 @@ public class Usuario {
       @Column(name="id", nullable=false, unique=true)
       private int id;
 
-      @Column(name="userName", nullable=false, unique=true)
+      @Column(name="user_name", nullable=false, unique=true)
       private String nomeUsuario;
 
       @Column(name="password", nullable=false, unique=false)
       private String senha;
-
-      @Column(name="lastAccess")
+      
+      @Column(name="created")
       @Temporal(TemporalType.DATE)
+      private Date dataCriacao;
+      
+      @Column(name="last_access")
+      @Temporal(TemporalType.TIMESTAMP)
       private Date ultimoAcesso;
 
       
@@ -53,9 +57,18 @@ public class Usuario {
       public void setSenha(String senha) {
             this.senha = senha;
       }
+      
+      
+      public Date getDataCriacao() {
+    	  	return dataCriacao;
+      }	
+
+      public void setDataCriacao(Date dataCriacao) {
+    	  	this.dataCriacao = dataCriacao;
+      }
 
       public Date getUltimoAcesso() {
-            return ultimoAcesso;
+    	  	return ultimoAcesso;
       }
 
       public void setUltimoAcesso(Date ultimoAcesso) {

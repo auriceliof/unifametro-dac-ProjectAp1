@@ -36,6 +36,12 @@
 						<p:inputText id="senha" value="#{LoginMB.usuario.senha}" />				
 					</div>
 					
+					<div style="margin-bottom: 20px;">
+						<p:outputLabel for="criado" value="Data de Criação"/>
+               			 <p:outputLabel id="criado" value="#{LoginMB.usuario.dataCriacao}" >
+               			 </p:outputLabel>			
+					</div>
+					
 					<div style="margin-top: 30px;">
 						<p:commandButton value="Criar" action="#{LoginMB.salvar}" update="form"
 							style="	border-radius: 25px; 
