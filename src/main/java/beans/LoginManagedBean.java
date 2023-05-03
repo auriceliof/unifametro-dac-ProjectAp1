@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -23,6 +24,8 @@ public class LoginManagedBean implements Serializable{
 	
 	private Usuario usuario = new Usuario();
 	
+	private Date dataCriacao = new Date();
+	
 	private List<Usuario> list;
 	
 	private  String contarUsuario;
@@ -44,6 +47,7 @@ public class LoginManagedBean implements Serializable{
 	public String salvar() {
 			
 		try {			
+			usuario.setDataCriacao(dataCriacao);
 			UsuarioDao.salvar(usuario);
 			MessageUtil.sucesso("Sucesso: ", "Usuário criado com sucesso!");
 			usuario = new Usuario();
@@ -69,8 +73,7 @@ public class LoginManagedBean implements Serializable{
 	public String listarTodos() {		
 		UsuarioDao.listarTodos();
 		return null;
-	}	
-	
+	}		
 
 	public List<Usuario> getList() {
 		if (list == null) {
@@ -78,7 +81,7 @@ public class LoginManagedBean implements Serializable{
 		}
 		return list;
 	}
-
+	
 	public void setList(List<Usuario> list) {
 		this.list = list;
 	}
