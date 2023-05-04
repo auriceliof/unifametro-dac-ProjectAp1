@@ -28,12 +28,7 @@ public class Usuario {
       @Column(name="created")
       @Temporal(TemporalType.DATE)
       private Date dataCriacao;
-      
-      @Column(name="last_access")
-      @Temporal(TemporalType.TIMESTAMP)
-      private Date ultimoAcesso;
-
-      
+     
       public int getId() {
 		return id;
       }
@@ -64,13 +59,5 @@ public class Usuario {
 
       public void setDataCriacao(Date dataCriacao) {
     	  	this.dataCriacao = dataCriacao;
-      }
-
-      public Date getUltimoAcesso() {
-    	  	return ultimoAcesso;
-      }
-
-      public void setUltimoAcesso(Date ultimoAcesso) {
-            this.ultimoAcesso = ultimoAcesso;
       }
  }

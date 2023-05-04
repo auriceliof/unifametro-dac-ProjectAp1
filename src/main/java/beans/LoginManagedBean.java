@@ -1,14 +1,14 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import daos.UsuarioDao;
-
+import daos.LoginDao;
 import entities.Usuario;
 
 
@@ -18,16 +18,19 @@ public class LoginManagedBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	
-	private UsuarioDao usuarioDAO = new UsuarioDao();
+	private LoginDao LoginDAO = new LoginDao();
 	
 	private Usuario usuario = new Usuario();
+		
+	private Date UltimoAcesso = new Date();
 	
 	
 	public String envia() {
 
-		usuario = usuarioDAO.getUsuario(usuario.getNomeUsuario(), usuario.getSenha());
+		usuario = LoginDAO.getUsuario(usuario.getNomeUsuario(), usuario.getSenha());
 		
 		if (usuario != null) {
+			
 			return "/itens_enviados";
 			
 		} else {
@@ -43,5 +46,21 @@ public class LoginManagedBean implements Serializable{
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public LoginDao getLoginDAO() {
+		return LoginDAO;
+	}
+
+	public void setLoginDAO(LoginDao loginDAO) {
+		LoginDAO = loginDAO;
+	}
+
+	public Date getUltimoAcesso() {
+		return UltimoAcesso;
+	}
+
+	public void setUltimoAcesso(Date ultimoAcesso) {
+		UltimoAcesso = ultimoAcesso;
 	}
 }
