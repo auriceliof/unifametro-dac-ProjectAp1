@@ -50,13 +50,17 @@
 					background-color: #e55039;
 					width: 8rem;"/>
 				
-							
-				<p:commandButton value="Estatística" type="button" icon="pi pi-chart-line" onclick="PF('dlg1').show()"
+				<p:linkButton outcome="estatistica" value="Estatística" icon="pi pi-chart-line"
 					style="border: 5px solid; 
 					border-radius: 25px; 
 					background-color: #f78fb3;
-					width: 8rem;"/>		
-					
+					width: 8rem;"/>	
+											
+				<p:commandButton title="EstatÃ­stica" type="button" icon="pi pi-chart-line" onclick="PF('dlg1').show()"
+					style="border: 5px solid; 
+					border-radius: 50%; 
+					background-color: #f78fb3;
+					width: 3rem;"/>	
 					
 				<p:linkButton action="Sair" outcome="login" icon="pi pi-sign-out" title="Sair" 
 					style="border: 5px solid; 
